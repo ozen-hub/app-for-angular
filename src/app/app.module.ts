@@ -13,13 +13,18 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { FindCustomerComponent } from './components/find-customer/find-customer.component';
 import { UpdateCustomerComponent } from './components/update-customer/update-customer.component';
+import { DeleteCustomerComponent } from './components/delete-customer/delete-customer.component';
+import { CustomerListComponent } from './components/customer-list/customer-list.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
     AppComponent,
     NewCustomerComponent,
     FindCustomerComponent,
-    UpdateCustomerComponent
+    UpdateCustomerComponent,
+    DeleteCustomerComponent,
+    CustomerListComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,8 @@ import { UpdateCustomerComponent } from './components/update-customer/update-cus
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
