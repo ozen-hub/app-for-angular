@@ -1,0 +1,47 @@
+<div class="outer">
+  <form [formGroup]="customerForm" (ngSubmit)="findCustomer()">
+    <mat-form-field appearance="outline">
+      <mat-label>Customer Id</mat-label>
+      <input
+        type="text"
+        formControlName="id"
+        matInput/>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Customer name</mat-label>
+      <input
+        [disabled]="true"
+        type="text"
+        placeholder="Ex: Nimal"
+        formControlName="name"
+        matInput/>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Customer Address</mat-label>
+      <input
+        type="text"
+        [disabled]="true"
+        placeholder="Ex: Colombo"
+        formControlName="address"
+        matInput/>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Customer Salary</mat-label>
+      <input
+        type="number"
+        [disabled]="true"
+        formControlName="salary"
+        matInput/>
+    </mat-form-field>
+    &nbsp;
+    <button
+      mat-raised-button color="primary"
+      [disabled]="customerForm.get('id')?.invalid"
+      type="submit"
+    >Find Customer</button>
+  </form>
+
+</div>
