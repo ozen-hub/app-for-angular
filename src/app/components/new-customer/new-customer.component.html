@@ -1,19 +1,36 @@
 <div class="outer">
-  <mat-form-field appearance="outline">
-    <mat-label>Customer name</mat-label>
-    <input type="text" placeholder="Ex: Nimal" matInput/>
-  </mat-form-field>
-&nbsp;
-  <mat-form-field appearance="outline">
-    <mat-label>Customer Address</mat-label>
-    <input type="text" placeholder="Ex: Colombo" matInput/>
-  </mat-form-field>
-  &nbsp;
-  <mat-form-field appearance="outline">
-    <mat-label>Customer Salary</mat-label>
-    <input type="number" matInput/>
-  </mat-form-field>
-  &nbsp;
-  <button mat-raised-button color="primary">Save Customer</button>
+  <form [formGroup]="customerForm" (ngSubmit)="saveCustomer()">
+    <mat-form-field appearance="outline">
+      <mat-label>Customer name</mat-label>
+      <input
+        type="text"
+        placeholder="Ex: Nimal"
+        formControlName="name"
+        matInput/>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Customer Address</mat-label>
+      <input
+        type="text"
+        placeholder="Ex: Colombo"
+        formControlName="address"
+        matInput/>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Customer Salary</mat-label>
+      <input
+        type="number"
+        formControlName="salary"
+        matInput/>
+    </mat-form-field>
+    &nbsp;
+    <button
+      mat-raised-button color="primary"
+      [disabled]="customerForm.invalid"
+      type="submit"
+    >Save Customer</button>
+  </form>
 
 </div>
