@@ -12,12 +12,14 @@ import {MatButtonModule} from "@angular/material/button";
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { FindCustomerComponent } from './components/find-customer/find-customer.component';
+import { UpdateCustomerComponent } from './components/update-customer/update-customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewCustomerComponent,
-    FindCustomerComponent
+    FindCustomerComponent,
+    UpdateCustomerComponent
   ],
   imports: [
     BrowserModule,

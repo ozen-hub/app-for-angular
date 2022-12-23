@@ -38,6 +38,23 @@ export class UpdateCustomerComponent implements OnInit {
 
 
   updateCustomer() {
+    let url = "http://localhost:8000/api/v1/customer/modify?id="+this.customerForm.get('id')?.value;
 
+    let customer = {
+      name: this.customerForm.get('name')?.value,
+      address: this.customerForm.get('address')?.value,
+      // @ts-ignore
+      salary: Number.parseInt(this.customerForm.get('salary')?.value)
+    }
+
+    this.http.put(url, {
+      name: customer.name,
+      address: customer.address,
+      salary: customer.salary,
+    }).subscribe(responseData => {
+      console.log(responseData);
+      alert('Updated!');
+      this.customerForm.reset();
+    });
   }
 }
