@@ -1,0 +1,45 @@
+<div class="outer">
+  <form [formGroup]="customerForm" (ngSubmit)="updateCustomer()">
+    <mat-form-field appearance="outline">
+      <mat-label>Customer Id</mat-label>
+      <input
+        type="text"
+        formControlName="id"
+        (keyup.enter)="findCustomer()"
+        matInput/>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Customer name</mat-label>
+      <input
+        type="text"
+        placeholder="Ex: Nimal"
+        formControlName="name"
+        matInput/>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Customer Address</mat-label>
+      <input
+        type="text"
+        placeholder="Ex: Colombo"
+        formControlName="address"
+        matInput/>
+    </mat-form-field>
+    &nbsp;
+    <mat-form-field appearance="outline">
+      <mat-label>Customer Salary</mat-label>
+      <input
+        type="number"
+        formControlName="salary"
+        matInput/>
+    </mat-form-field>
+    &nbsp;
+    <button
+      mat-raised-button color="primary"
+      [disabled]="customerForm.invalid"
+      type="submit"
+    >Update Customer</button>
+  </form>
+
+</div>
