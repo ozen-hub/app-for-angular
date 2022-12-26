@@ -1,7 +1,7 @@
 <div class="main" style="padding: 50px 0">
   <div class="container">
     <div class="col-12">
-      <input type="search" name="" id="" class="form-control">
+      <input #se (keyup)="search(se.value)" type="search" name="" id="" class="form-control">
     </div>
     <hr>
     <div class="col-12">
@@ -16,18 +16,20 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let temp of dataArray; index as num">
+          <td>{{(num+1)}}</td>
+          <td>{{temp.id}}</td>
+          <td>{{temp.name}}</td>
+          <td>{{temp.address}}</td>
+          <td>{{temp.salary}}</td>
         </tr>
         </tbody>
       </table>
-      <mat-paginator [length]="100"
-                     [pageSize]="10"
-                     [pageSizeOptions]="[5, 10, 25, 100]"
+      <mat-paginator [length]=dataCount
+                     [pageSize]=size
+                     [pageIndex]=page
+                     [pageSizeOptions]=paginateOption
+                     (page)="pageEvent=serverDataManager($event)"
                      aria-label="Select page">
       </mat-paginator>
     </div>
