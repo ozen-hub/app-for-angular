@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
+import {CustomerService} from "../../service/customer.service";
 
 @Component({
   selector: 'app-new-customer',
@@ -9,7 +10,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class NewCustomerComponent implements OnInit {
 
-  constructor(private http: HttpClient) {
+  constructor(private customerService: CustomerService) {
   }
 
   customerForm = new FormGroup({
@@ -32,13 +33,7 @@ export class NewCustomerComponent implements OnInit {
       salary: Number.parseInt(this.customerForm.get('salary')?.value)
     }
 
-    let url = "http://localhost:8000/api/v1/customer/create"
-
-    this.http.post(url, {
-      name: customer.name,
-      address: customer.address,
-      salary: customer.salary,
-    }).subscribe(responseData => {
+    this.customerService.saveCustomer(customer).subscribe(responseData => {
       console.log(responseData);
       alert('Saved!');
       this.customerForm.reset();

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
+import {CustomerService} from "../../service/customer.service";
 
 @Component({
   selector: 'app-update-customer',
@@ -17,28 +18,24 @@ export class UpdateCustomerComponent implements OnInit {
     salary: new FormControl(0,Validators.required),
   })
 
-  constructor(private http: HttpClient) {
+  constructor(private service: CustomerService) {
   }
 
   ngOnInit(): void {
   }
 
   findCustomer(){
-    let url = "http://localhost:8000/api/v1/customer/"+this.customerForm.get('id')?.value;
-
-    this.http.get<any>(url).subscribe(response=>{
+    this.service.findCustomer(this.customerForm.get('id')?.value!).subscribe(response=>{
       this.customerForm.patchValue({
         name:response.data.name,
         address:response.data.address,
         salary:response.data.salary,
       })
     })
-
   }
 
 
   updateCustomer() {
-    let url = "http://localhost:8000/api/v1/customer/modify?id="+this.customerForm.get('id')?.value;
 
     let customer = {
       name: this.customerForm.get('name')?.value,
@@ -47,11 +44,7 @@ export class UpdateCustomerComponent implements OnInit {
       salary: Number.parseInt(this.customerForm.get('salary')?.value)
     }
 
-    this.http.put(url, {
-      name: customer.name,
-      address: customer.address,
-      salary: customer.salary,
-    }).subscribe(responseData => {
+    this.service.updateCustomer(customer).subscribe(responseData => {
       console.log(responseData);
       alert('Updated!');
       this.customerForm.reset();
